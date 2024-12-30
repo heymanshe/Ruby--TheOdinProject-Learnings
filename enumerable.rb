@@ -22,7 +22,7 @@ responses.select { |person, response| response == 'yes'}
 
 # each method
 friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
-friends.each { |friend| puts "Hello, " + friend }
+# friends.each { |friend| puts "Hello, " + friend }
 
 # on hash
 my_hash = { "one" => 1, "two" => 2 }
@@ -58,8 +58,60 @@ my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
 my_order.map { |item| item.gsub('medium', 'extra large') }
 
 
-# reduce method
+# reduce method => takes an array or hash and reduces it down to a single object
 my_numbers = [5, 6, 7, 8]
 add_numbers = my_numbers.reduce { |sum, number| sum + number }
 
 puts add_numbers
+
+
+votes = ["Bob's Dirty Burger Shack", "St. Mark's Bistro", "Bob's Dirty Burger Shack"]
+
+result = votes.reduce(Hash.new(0)) do |result, vote|
+  result[vote] += 1
+  result
+end
+
+puts result
+
+
+# Bang Method=> when want to change the original array
+
+friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+
+friends.map! { |friend| friend.upcase }
+#=> `['SHARON', 'LEO', 'LEILA', 'BRIAN', 'ARUN']`
+
+friends
+#=> `['SHARON', 'LEO', 'LEILA', 'BRIAN', 'ARUN']`
+
+
+# Include method
+
+numbers = [5, 6, 7, 8]
+
+# puts numbers.include?(6)
+# puts numbers.include?(3)
+
+
+# Any method => true if any elements in array or hash match the condition within the block
+numbers = [21, 42, 303, 499, 550, 811]
+
+# puts numbers.any? { |number| number > 500 }
+# puts numbers.any? { |number| number < 20 }
+
+# All Method => true if all the elements in array or hash match the condition you set within the block
+
+fruits = ["apple", "banana", "strawberry", "pineapple"]
+
+puts fruits.all? { |fruit| fruit.length > 3 }
+puts fruits.all? { |fruit| fruit.length > 6 }
+
+
+# None method => true only if the condition in the block matches none of the elements in your array or hash
+
+fruits = ["apple", "banana", "strawberry", "pineapple"]
+
+puts fruits.none? { |fruit| fruit.length > 10 }
+puts fruits.none? { |fruit| fruit.length > 6 }
+
